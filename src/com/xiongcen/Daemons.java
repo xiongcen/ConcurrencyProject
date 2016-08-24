@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 /**
  * Daemon线程被设置为后台模式,它派生出的子线程也默认是后台线程.
- * 第二个for循环也可能因为CPU被让出而中断
+ * Daemon线程run()方法中第二个for循环也可能因为CPU被让出而中断
  */
 class Daemon implements Runnable {
   private Thread[] t = new Thread[10];
@@ -43,6 +43,7 @@ public class Daemons {
     System.out.println("d.isDaemon() = " + d.isDaemon() + ", ");
     // Allow the daemon threads to
     // finish their startup processes:
+    // 换成毫秒打印的内容更少,因主线程运行完成程序停止
     TimeUnit.SECONDS.sleep(1);
   }
 } /* Output: (Sample)
