@@ -47,7 +47,7 @@ public class Joining {
     public static void main(String[] args) {
         Sleeper sleepy = new Sleeper("Sleepy", 1500);
         Sleeper grumpy = new Sleeper("Grumpy", 1500);
-        // 一个线程在其他线程之上调用join()方法,其效果是等待一段时间直到第二个线程结束才继续执行.
+        // (sleepy)线程在(dopey)其他线程之上调用join()方法,其效果是(dopey)其他线程等待一段时间直到(sleepy)线程结束才继续执行.
         // (Joiner)dopey挂起,直到(Sleeper)sleepy结束才恢复
         Joiner dopey = new Joiner("Dopey", sleepy);
         Joiner doc = new Joiner("Doc", grumpy);
