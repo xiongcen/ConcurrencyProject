@@ -25,4 +25,31 @@ package com.xiongcen;
  * Created by xiongcen on 16/9/1.
  */
 public class Atomicity {
-}
+    int i;
+    void f1() { i++; }
+    void f2() { i += 3; }
+}/* Output: (Sample)
+每一条指令都会产生一个get和put,它们之间还有一些其他的指令.
+因此在获取和放置之间,另一个任务可能会修改这个域.所以这些操作都不是原子性的.
+
+...
+void f1();
+  Code:
+   0:        aload_0
+   1:        dup
+   2:        getfield        #2; //Field i:I
+   5:        iconst_1
+   6:        iadd
+   7:        putfield        #2; //Field i:I
+   10:        return
+
+void f2();
+  Code:
+   0:        aload_0
+   1:        dup
+   2:        getfield        #2; //Field i:I
+   5:        iconst_3
+   6:        iadd
+   7:        putfield        #2; //Field i:I
+   10:        return
+*///:~
