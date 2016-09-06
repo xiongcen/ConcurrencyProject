@@ -10,11 +10,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Critical:临界的
+ *
+ * Pair: Pair类为非线程安全,自增加操作不是线程安全,并且因为没有任何方法被标记为synchronized,
+ * 所以不能保证一个Pair对象在多线程程序中不会被破坏.
+ *
+ * PairManager: 如果给一个非线程安全的Pair类需要在一个线程环境中使用它,通过创建PairManager类就可以实现这一点,
+ * PairManager类持有一个Pair对象并控制对它的一切访问.注意唯一的public方法是getPair(),它是synchronized的.
+ * 对于抽象方法increment(),对increment()的同步控制将在实现的时候进行处理.
+ *
+ *
+ *
  * Created by xiongcen on 16/9/5.
  */
-
 class Pair {
-    // 非线程安全
     private int x, y;
 
     public Pair() {
