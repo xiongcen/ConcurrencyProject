@@ -4,8 +4,8 @@ package com.xiongcen.art;
  * Java并发编程艺术 4.2.3理解中断 代码清单4-7
  *
  * interrupt()方法并不会中断线程,它只是一个标志位
- * 在某些方法(如休眠,具体参见interrupt()方法方法注释,
- * !!注意:进行不能中断的IO操作而阻塞和要获得对象的锁调用对象的synchronized方法而阻塞时不会抛出InterruptedException!!)
+ * 在某些方法(如等待\休眠\阻塞,具体参见interrupt()方法方法注释,
+ * !!注意:进行不能中断的IO操作而阻塞和要获得对象的锁调用对象的synchronized方法而阻塞时不会抛出InterruptedException,但是Lock方式的阻塞会抛出异常!!)
  * 抛出InterruptedException之前,JVM会将该线程的中断标志移除,
  * 然后再抛出InterruptedException,所以isInterrupted()方法返回false
  * Created by xiongcen on 16/10/15.
