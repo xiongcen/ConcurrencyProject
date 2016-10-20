@@ -1,7 +1,5 @@
 package com.xiongcen.art.five;
 
-import java.util.IllegalFormatException;
-import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
