@@ -1,5 +1,6 @@
 package com.xiongcen.art.eight;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
@@ -27,21 +28,34 @@ public class SemaphoreTest {
 
     public static void main(String[] args) {
         for (int i = 0; i < THREAD_COUNT; i++) {
-            threadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        // 获得许可证
-                        s.acquire();
-                        System.out.println("[" + System.currentTimeMillis() + "] save data");
-                        // 归还许可证
-                        s.release();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            threadPool.execute(new RunnableImpl(i));
         }
         threadPool.shutdown();
+    }
+
+    static class RunnableImpl implements Runnable {
+
+        private int index;
+
+        public RunnableImpl(int index) {
+            this.index = index;
+        }
+
+        @Override
+        public void run() {
+            try {
+                // 获得许可证
+                s.acquire();
+                System.out.println("[**************" + index + "**************]");
+                System.out.println("此信号量中当前可用的许可证数:" + s.availablePermits());
+                System.out.println("正在等待获取许可证的线程数:" + s.getQueueLength());
+                System.out.println("是否有线程正在等待获取许可证:" + s.hasQueuedThreads());
+                System.out.println("[" + System.currentTimeMillis() + "] save data");
+                // 归还许可证
+                s.release();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
