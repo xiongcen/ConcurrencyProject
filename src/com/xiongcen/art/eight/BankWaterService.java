@@ -18,7 +18,7 @@ public class BankWaterService implements Runnable {
     private CyclicBarrier c = new CyclicBarrier(4, this);
 
     // 假设只有4个sheet,所以只启动4个线程
-    private Executor executor = Executors.newFixedThreadPool(4);
+    private ExecutorService executor = Executors.newFixedThreadPool(4);
 
     // 保存每个sheet计算出的银流结果
     private ConcurrentHashMap<String, Integer> sheetBankWaterCount = new ConcurrentHashMap<>();
@@ -57,5 +57,6 @@ public class BankWaterService implements Runnable {
     public static void main(String[] args) {
         BankWaterService bankWaterService = new BankWaterService();
         bankWaterService.count();
+        bankWaterService.executor.shutdown();
     }
 }
