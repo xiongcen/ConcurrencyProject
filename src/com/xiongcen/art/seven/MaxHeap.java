@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 二叉堆(最大堆)
+ * { link="http://www.cnblogs.com/skywang12345/p/3610390.html" }
  * Created by xiongcen on 16/11/4.
  */
 public class MaxHeap<T extends Comparable<T>> {
